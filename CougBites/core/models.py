@@ -35,10 +35,10 @@ class AuthUser(models.Model):
     password = models.CharField(max_length=128)
     last_login = models.DateTimeField(blank=True, null=True)
     is_superuser = models.BooleanField()
-    username = models.CharField(unique=True, max_length=150)
-    first_name = models.CharField(max_length=150)
-    last_name = models.CharField(max_length=150)
-    email = models.CharField(max_length=254)
+    username = models.CharField(unique=True, max_length=16)
+    first_name = models.CharField(max_length=20, null=True)
+    last_name = models.CharField(max_length=20, null=True)
+    email = models.CharField(max_length=35)
     is_staff = models.BooleanField()
     is_active = models.BooleanField()
     date_joined = models.DateTimeField()
@@ -115,10 +115,9 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 class Foodavailability(models.Model):
-    availability = models.BooleanField(default=True)
     avail_days = ArrayField(models.BooleanField(), size=7) 
     avail_times = ArrayField(models.BooleanField(), size=3)
-    food = models.OneToOneField('Fooditems', models.DO_NOTHING, primary_key=True)
+    food = models.ForeignKey('Fooditems', models.DO_NOTHING)
     location = models.ForeignKey('Locations', models.DO_NOTHING)
 
     class Meta:
@@ -129,10 +128,10 @@ class Foodavailability(models.Model):
 
 class Fooditems(models.Model):
     food_id = models.CharField(primary_key=True, max_length=20)
-    food_name = models.CharField(max_length=50, blank=False)
+    food_name = models.CharField(max_length=30, blank=False)
     food_pic = models.BinaryField(blank=True, null=True)
     food_description = models.CharField(max_length=400, blank=True)
-    avg_rating = models.IntegerField()
+    avg_rating = models.IntegerField(null=True)
 
     class Meta:
         managed = True

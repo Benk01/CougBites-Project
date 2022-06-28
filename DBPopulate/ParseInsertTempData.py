@@ -4,7 +4,6 @@ import psycopg2
 import os
 from psycopg2 import Error
 
-from attr import attr, attributes
 
 def cleanStr4SQL(s):
     return s.replace("'","`").replace("\n"," ")
@@ -101,7 +100,7 @@ if __name__ == "__main__":
         print("couldn't connect")
     # read the JSON file
     # We assume that the Yelp data files are available in the current directory. If not, you should specify the path when you "open" the function. 
-    insertUsers(connection)
-    insertLocations(connection)
+    #insertUsers(connection)
+    #insertLocations(connection)
     parseFoodData(connection)
 

@@ -5,6 +5,7 @@ from django import forms
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField()
+    username = forms.CharField(max_length=16, min_length=4, help_text="Required. 4 - 16 characters. Letters, digits and @/./+/-/_ only.")
 
     class Meta:
         model = User
