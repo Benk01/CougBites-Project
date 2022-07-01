@@ -115,20 +115,22 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 class Foodavailability(models.Model):
-    avail_days = ArrayField(models.BooleanField(), size=7) 
-    avail_times = ArrayField(models.BooleanField(), size=3)
+    food_availability_id = models.AutoField(primary_key=True)
+    avail_days = ArrayField(models.BooleanField(), size=7, blank=True) 
+    avail_times = ArrayField(models.BooleanField(), size=3, blank=True)
     food = models.ForeignKey('Fooditems', models.DO_NOTHING)
     location = models.ForeignKey('Locations', models.DO_NOTHING)
+    
 
     class Meta:
         managed = True
         db_table = 'foodavailability'
-        unique_together = (('food', 'location'),)
+        #unique_together = (('food', 'location'),)
 
 
 class Fooditems(models.Model):
     food_id = models.CharField(primary_key=True, max_length=20)
-    food_name = models.CharField(max_length=30, blank=False)
+    food_name = models.CharField(max_length=60, blank=False)
     food_pic = models.BinaryField(blank=True, null=True)
     food_description = models.CharField(max_length=400, blank=True)
     avg_rating = models.IntegerField(null=True)
