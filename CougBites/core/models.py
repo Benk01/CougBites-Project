@@ -131,7 +131,6 @@ class Foodavailability(models.Model):
 class Fooditems(models.Model):
     food_id = models.CharField(primary_key=True, max_length=20)
     food_name = models.CharField(max_length=60, blank=False)
-    food_pic = models.BinaryField(blank=True, null=True)
     food_description = models.CharField(max_length=400, blank=True)
     avg_rating = models.IntegerField(null=True)
 
