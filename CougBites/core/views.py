@@ -24,6 +24,5 @@ def index(response):
     return render(response, "index.html", {"items":list(items[0:9])})
 
 def food_item(response, id):
-    id = "FOOD-" + str(id)
     item = Fooditems.objects.filter(food_id__exact=id)
     return render(response, "item.html", {"item":item[0]})
